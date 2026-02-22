@@ -1,0 +1,84 @@
+
+  html,body{
+  margin:0;height:100%;width:100%;
+  background:#f9ffdc;
+  display:flex;justify-content:center;align-items:center;
+  font-family:sans-serif;color:#fff;overflow:hidden;
+}
+
+#wrap{
+  width:420px;height:800px;
+  background: url("icons/B.png") no-repeat center center / cover;
+  display:flex;flex-direction:column;justify-content:space-between;
+  border-radius:16px;
+  box-shadow:0 0 40px rgba(0,0,0,0),inset 0 0 60px rgba(60,30,35,0);
+  padding:1em;box-sizing:border-box;
+  transform-origin:center center;
+  background-size:cover;background-position:center;
+}
+* {
+  -webkit-user-drag: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+#startCover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background: url("icons/S.png") no-repeat center center / cover;
+  border: none;
+  outline: none;
+  display: block;
+  cursor: pointer;
+}
+
+
+
+/* 🌕 미니게임 메뉴 전체(=wrap 크기 동일) */
+#miniMenu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;      /* ← wrap의 패딩 포함 전체 */
+    height: 100%;
+    padding: 0;       /* 내부에서 다시 맞춤 */
+    background: white;
+    z-index: 6000;
+    display: none;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+
+/* 내부 버튼 배치 */
+.miniInner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}
+
+.miniBtn {
+  width: 220px;
+  height: 60px;
+  border: none;
+  border-radius: 12px;
+  background: #ffe1e6;
+  color: #222;
+  font-weight: bold;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.closeBtn {
+  background: #ffd1d1;
+}
+

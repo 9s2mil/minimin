@@ -1,0 +1,92 @@
+/*==상단 컨테이너==*/
+#topContainer { width: 100%; height: 25%; display: grid; background: rgba(34, 34, 34, 0); padding: 0; margin: 0; position: relative;
+  grid-template-areas:
+  "help . current"
+  "player character ."
+  "player character color"; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr 1fr 1fr; }
+
+  /*도움말 버튼*/
+  #btnHelp {
+    width: 2.4em; height: 2.4em; color: #9c861a; font-size: 1em; font-weight: bold;
+    background: radial-gradient(circle at 30% 30%,#fff9c9 0%, #ffe97a 35%, #e6c843 70%,#b89f1f 100%);
+    border: 1px solid #9c861a; border-radius: 50%; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: inset 4px 4px 7px rgba(0, 0, 0, 0.18),
+                inset -4px -4px 7px rgba(255, 255, 255, 0.8),
+                0 2px 6px rgba(0, 0, 0, 0.25);
+    transition: transform 0.1s ease;
+  }
+
+  #btnHelp:active {
+    background: radial-gradient(circle at 60% 60%, #fff9c9 0%, #ffe97a 25%, #e0bc31 70%, #9c861a 100%);
+    transform: scale(0.9);
+  }
+
+    /*도움말 팝업-오버레이*/
+    #helpPopup { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.125); display: none; justify-content: center; align-items: center; z-index: 999; }
+    /*도움말 팝업-박스*/
+    .popupBox { width: 80%; max-width: 350px; background: #e3effd; border-radius: 14px; border: #14ddb2 3px solid; padding: 25px; text-align: center; color: #222; line-height: 1.55; font-size: 15px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); }
+    /*대주제*/.popupBox h2 { margin-top: 0; margin-bottom: 14px; font-size: 22px; font-weight: 700; }
+    /*소주제*/.popupBox .lead { font-size: 15px; font-weight: 600; margin-bottom: 25px; }
+    /*설명*/.popupBox .desc { margin-bottom: 25px; text-align: left; }
+    /*주의*/ strong { color: #d9534f; }
+    /*닫기*/#closeHelp { margin-top: 10px; padding: 8px 18px; border: none; border-radius: 8px; background: #777; color: #fff; cursor: pointer; }
+
+  /*최고 점수*/
+  #playerInfo { grid-area: player; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 5px; }
+    #playerName { font-weight: bold; margin: 0; line-height: 1; font-weight: bold; }
+    #playerScore { color: #f4e1b3; margin: 0; line-height: 1; font-size: 0.9em; font-weight: bold; }
+
+  /*캐릭터 컨테이너*/
+  #characterArea { grid-area: character; display: flex; justify-content: center; align-items: center; }
+  #characterArea img { height: 88%; transform: scale(1.12); transform-origin: center bottom; object-fit: contain; }
+
+  /*현재 점수*/
+  #currentScore { color: #000000; grid-area: current; justify-self: end; align-self: start; font-size: 1em; font-weight: bold; }
+
+  /*색상 보조*/
+  #btnColor {
+    width: 4em; height: 4em; grid-area: color; justify-self: end; align-self: end;
+    background: radial-gradient(circle at 30% 30%, #ffc0c0 0%, #ff9fb1 25%, #ff5875 60%, #d81f46 100%);
+    border: 2px solid #b51434; color: #fff; border-radius: 50%; font-weight: bold; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: inset 4px 4px 7px rgba(0, 0, 0, 0.18),
+                inset -4px -4px 7px rgba(255, 255, 255, 0.8),
+                0 2px 6px rgba(0, 0, 0, 0.25);
+    transition: transform 0.1s ease; letter-spacing: 0.05em;
+  }
+
+  #btnColor:active {
+    background: radial-gradient(circle at 60% 60%, #ffffff 0%, #ff8297 35%, #ff436a 70%, #b51434 100%);
+    transform: scale(0.9);
+  }
+
+
+/*==하단 컨테이너==*/
+#bottomContainer { width: 100%; height: 70%; display: flex; justify-content: center; align-items: center; }
+
+  /*게임판*/
+  #board { display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: repeat(7, 1fr); gap: 6px; width: 90%; height: auto; background-color: rgba(0, 0, 0, 0); border-radius: 12px; }
+  .cell { cursor: pointer; display: flex; align-items: center; justify-content: center; transition: transform 0.2s; background-color: rgba(0, 0, 0, 0); aspect-ratio: 1 / 1; }
+  .cell:hover { transform: scale(1.1); }
+
+/*==최하단 컨테이너==*/
+#anotherContainer { width: 100%; height: 5%; background: rgba(0,0,0,0); border-radius: 8px; display:flex; justify-content:space-between; align-items:center; }
+
+  /*백버튼*/ #btnBack { width:4em; height:3em; border-radius:8px; border:none; background:#444; color:#fff; font-weight:bold; cursor:pointer; }
+
+  /*도감 버튼*/
+  #btnGallery { width:4em; height:3em; border-radius:8px; border:none; background:#8b4513; color:white; font-weight:bold; cursor:pointer; }
+    /*도감 팝업-오버레이*/#galleryPopup { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.45); display: none; justify-content: center; align-items: center; z-index: 9998; }
+    /*도감 팝업-박스*/.galleryBox { width: 90%; max-width: 380px; background: #fff; border-radius: 14px; padding: 15px; box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3); color: #222; text-align: center; }
+      /*도감 내부탭*/
+      .galleryTabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 12px; }
+      .galleryTabs .tab { padding: 8px 0; background: #e5e5e5; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 14px; }
+      .galleryTabs .tab.active { background: #8b4513; color: #fff; }
+      /*콘텐츠 영역*/
+      .galleryContent { width: 100%; min-height: 160px; background: #fafafa; border-radius: 8px; padding: 12px; margin-bottom: 15px; box-sizing: border-box; }
+      .previewImg { width: 120px; height: 120px; object-fit: contain; border-radius: 8px; margin-bottom: 12px; border: 1px solid #ccc; }
+    /*아이콘 초기화*/
+    .resetBtn { margin-top: 12px; padding: 8px 16px; background: #c94a4a; border: 2px solid #a33737; border-radius: 8px; color: #fff; font-weight: bold; cursor: pointer; width: 100%; font-size: 14px; transition: 0.15s; }
+    .resetBtn:hover { background: #d85a5a; }
+    /*도감 닫기*/#closeGallery { width: 100%; padding: 10px; background: #444; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; }

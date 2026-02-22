@@ -1,0 +1,235 @@
+#feedMenu { position:absolute; top:0; left:0; width:100%; height:100%; background: url("./icons/B1.png") top center / 100% auto no-repeat; z-index:100; display:none; padding:1em; box-sizing:border-box; display:flex; flex-direction:column; justify-content:flex-start; align-items:center; border-radius: 10px;}
+  /*도움말-전역*/
+  .feedHelpBtn { width: 2.4em; height: 2.4em; color: #9c861a; font-size: 1em; font-weight: bold; border: 1px solid #9c861a; 
+    background: radial-gradient(circle at 30% 30%,#fff9c9 0%, #ffe97a 35%, #e6c843 70%,#b89f1f 100%);
+    display: flex; align-items: center; justify-content: center; border-radius: 50%; cursor: pointer;
+    box-shadow: inset 4px 4px 7px rgba(0, 0, 0, 0.18),
+                inset -4px -4px 7px rgba(255, 255, 255, 0.8),
+                0 2px 6px rgba(0, 0, 0, 0.25); transition: transform 0.1s ease; position: fixed; top: 1em; left: 1em; }
+  .feedHelpBtn:active { background: radial-gradient(circle at 60% 60%, #fff9c9 0%, #ffe97a 25%, #e0bc31 70%, #9c861a 100%); transform: scale(0.9); }
+  /*이름*/#feedMenu h2 { color:#222; margin:10px 0 20px 0; font-size:22px; font-weight:bold; }
+  /*단계 버튼*/
+  #stageGrid { margin-top: 18em; width:100%; display:grid; grid-template-columns:repeat(5,1fr); gap:10px; justify-items:center; }
+  .stageBtn { width: 3em; height: 3em; font-size: 1em; font-weight: bold;
+    color: #b33; background: radial-gradient(circle at 30% 30%, #ffe5e5 0%, #ffcccc 35%, #ffb3b3 70%, #ff9a9a 100%);
+    border: 1px solid #b33; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    box-shadow:
+      inset 4px 4px 7px rgba(0, 0, 0, 0.18),
+      inset -4px -4px 7px rgba(255, 255, 255, 0.8),
+      0 2px 6px rgba(0, 0, 0, 0.25); transition: transform 0.1s ease;
+  }
+  .hard { display: none; position: fixed; right: 1em; top: 1em;  width: 2.4em !important; height: 2.4em !important; }
+  .stageBtn:active { background: radial-gradient(circle at 60% 60%, #ffe5e5 0%, #ffb3b3 25%, #ff9999 70%, #b33 100%); transform: scale(0.9); }
+  /*뒤로가기*/#feedBack { position: fixed; bottom: 1em; left: 1em; width:4em; height:3em; border-radius:8px; border:none; background:#444; color:#fff; font-weight:bold; cursor:pointer; }
+  /*도감-전역*/.feedGalleryBtn { position: fixed; right: 1em; bottom: 1em; width:4em; height:3em; border-radius:8px; border:none; background:#8b4513; color:white; font-weight:bold; cursor:pointer; }
+
+/* 팝업 전체 */
+#popupFeedGame {
+  position: fixed;
+  inset: 0;
+  z-index: 7000;
+  display: none;
+  background: url("./icons/B1.png") top center / 100% auto no-repeat;
+  border-radius: 10px;
+}
+
+/* 내부 wrap */
+#popupFeedGame .popupInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+
+  padding: 1em;
+}
+
+/* 두 보드 공통 */
+.feedBoard {
+  display: grid;
+  gap: 6px;
+}
+
+/* 셀 */
+.feedCell {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+}
+
+/* 버튼 영역 */
+#feedRowArea,
+#feedColArea {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* col은 세로 배치 */
+#feedColArea {
+  position: absolute;
+  right: 1em;
+  top: 50%;
+  transform: translateY(-50%);
+  flex-direction: column;
+}
+
+/* 아이콘 버튼 (물 / 풀) */
+.feedActionBtn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: transform .1s;
+}
+
+.feedActionBtn:active {
+  transform: scale(.9);
+}
+
+/* 물(0) = 파랑 */
+.btnWater {
+  background: #3b82f6;
+}
+
+/* 풀(1) = 초록 */
+.btnGrass {
+  background: #22c55e;
+}
+
+/* 뒤로가기 */
+.feedBackBtn {
+  position: fixed; bottom: 1em; left: 1em; width:4em; height:3em; border-radius:8px; border:none; background:#444; color:#fff; font-weight:bold; cursor:pointer;
+}
+
+#feedClearPopup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  display: none;
+  z-index: 9000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 30vh;
+}
+
+.popupInnerClear {
+  background: rgba(255, 255, 255, 0.79);
+  padding: 2em;
+  border-radius: 12px;
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.popupInnerClear button {
+  flex: 1;
+  height: 40px;
+  font-weight: bold;
+  border-radius: 8px;
+}
+.feedCell {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* 0,1,2 */
+.feedCell.water { background-image: url("./icons/W.png"); }
+.feedCell.grass { background-image: url("./icons/G.png"); }
+.feedCell.g { background-image: url("./icons/P.png"); }
+.feedCell.w { background-image: url("./icons/D.png"); }
+
+/* 정답판 구분 */
+#feedTargetBoard {
+  margin-top: auto;
+  margin-bottom: 0.2em;
+  padding: 6px;
+  border-radius: 10px;
+  display: grid;
+  gap: 4px;
+}
+
+#feedCurrentBoard {
+  padding: 2em;
+  padding-left: 3em;
+  background-image: url("./icons/B3.png");
+  border-radius: 10px;
+  display: grid;
+  gap: 4px;
+}
+
+#feedLayout {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  gap: 1em;
+  grid-template-columns: 40% 60%;
+  
+  grid-template-rows: 5% 35% 5% 40% 15%;
+
+   grid-template-areas:
+    "top target"
+    "char  target"
+    "char blank"
+    "game  game"
+    "bot bot"
+}
+
+/* 1. 상단 영역 */
+#feedTop {
+  background: none;
+  grid-area: top;
+}
+
+#feedBottom {
+  background: none;
+  grid-area: bot;
+}
+/* 2. 캐릭터 */
+#feedCharacter {
+  grid-area: char;
+  background: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+  background-image: url("./icons/C4.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* 3. 정답 컨테이너 */
+#feedTargetContainer {
+  grid-area: target;
+  background: url("./icons/B2.png") top center / 100% 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#feedSpace {
+  grid-area: blank;
+}
+
+/* 4. 문제보드 컨테이너 */
+#feedGameContainer {
+  grid-area: game;
+  background: none;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}

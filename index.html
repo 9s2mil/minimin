@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="theme-color" content="#b30021">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="main.css">
+<link rel="stylesheet" href="t.css">
+<link rel="stylesheet" href="feed.css">
+<link rel="stylesheet" href="defense.css">
+
+<title>목장 미니게임</title>
+</head>
+<body>
+
+<button id="startCover"></button>
+
+<div id="wrap">
+
+  <!-- 🎮 미니게임 선택 메뉴 -->
+  <div id="miniMenu">
+    <div class="miniInner">
+      <!-- <button class="miniBtn" id="btnTraining">무릿매? 던지기</button> -->
+      <button class="miniBtn" id="btnFeed">목장 가꾸기</button>
+      <button class="miniBtn closeBtn" id="btnDefenseClose">야생동물 침공</button>
+    </div>
+  </div>
+
+  <!-- -->
+  <div id="popupTraining" class="popupMenu">
+    <div class="popupInner">
+
+      <!-- 🟦 TOP 영역 -->
+      <div id="trainingTop">
+
+        <button id="trainingHelp">?</button>
+
+        <div id="trainingScoreBox">
+          <div id="trainingBestScore">최고점수: 0</div>
+          <div id="trainingCurrentScore">현재점수: 0</div>
+        </div>
+
+        <div id="trainingCharacterWrap">
+          <img id="trainingScene" src="trainingDefault.png">
+        </div>
+
+      </div>
+
+
+      <!-- 🟠 BOTTOM (원판) -->
+      <div id="trainingBottom">
+
+        <div id="boardWrap">
+          <div id="gridBoard"></div>
+        </div>
+
+        <div id="btnWrap">
+          <button id="stTraining">시작</button>
+          <button id="btnFire">발파</button>
+        </div>
+
+      </div>
+
+      <!-- 🟢 FOOTER (백/도감) -->
+      <div id="trainingFooter">
+        <button id="btnTrainingBack">◀ 메뉴</button>
+        <button id="btnTrainingGallery">도감</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 목장 가꾸기 난이도 선택 화면 -->
+  <div id="feedMenu">
+    <h2>목장 가꾸기</h2>
+
+    <button class="feedHelpBtn">?</button>
+    <button class="stageBtn hard" data-stg="31">Hard</button>
+
+    <!-- 1~30 버튼 생성 -->
+    <div id="stageGrid"><button class="stageBtn" data-stg="1">1</button><button class="stageBtn" data-stg="2">2</button><button class="stageBtn" data-stg="3">3</button><button class="stageBtn" data-stg="4">4</button><button class="stageBtn" data-stg="5">5</button><button class="stageBtn" data-stg="6">6</button><button class="stageBtn" data-stg="7">7</button><button class="stageBtn" data-stg="8">8</button><button class="stageBtn" data-stg="9">9</button><button class="stageBtn" data-stg="10">10</button><button class="stageBtn" data-stg="11">11</button><button class="stageBtn" data-stg="12">12</button><button class="stageBtn" data-stg="13">13</button><button class="stageBtn" data-stg="14">14</button><button class="stageBtn" data-stg="15">15</button><button class="stageBtn" data-stg="16">16</button><button class="stageBtn" data-stg="17">17</button><button class="stageBtn" data-stg="18">18</button><button class="stageBtn" data-stg="19">19</button><button class="stageBtn" data-stg="20">20</button><button class="stageBtn" data-stg="21">21</button><button class="stageBtn" data-stg="22">22</button><button class="stageBtn" data-stg="23">23</button><button class="stageBtn" data-stg="24">24</button><button class="stageBtn" data-stg="25">25</button><button class="stageBtn" data-stg="26">26</button><button class="stageBtn" data-stg="27">27</button><button class="stageBtn" data-stg="28">28</button><button class="stageBtn" data-stg="29">29</button><button class="stageBtn" data-stg="30">30</button></div>
+
+    <button class="feedGalleryBtn">도감</button>
+    <button id="feedBack">◀</button>
+  </div>
+  <!-- 목장 가꾸기 게임 화면 -->
+  <div id="popupFeedGame">
+    <div class="popupInner">
+
+      <button class="feedHelpBtn">?</button>
+      <button class="feedGalleryBtn">도감</button>
+    
+      <div id="feedLayout">
+        <!-- 1. 상단 --><div id="feedTop"></div>
+        <!-- 2. 캐릭터 --><div id="feedCharacter"></div>
+        <!-- 3. 정답 컨테이너 -->
+        <div id="feedTargetContainer">
+          <p>우왕</p>
+          <div id="feedTargetBoard" class="feedBoard"> </div>
+        </div>
+        <!-- 4. 중단 --><div id="feedSpace"></div>
+        <!-- 5. 문제보드 -->
+        <div id="feedGameContainer">
+          <div id="feedCurrentBoard" class="feedBoard"></div>
+        </div>
+        <!-- 6. 하단 --><div id="feedBottom"></div>
+      </div>
+
+      <button class="feedBackBtn">◀</button>
+
+    </div>
+  </div>
+
+  <!--양떼를 지켜라!-->
+  <div id="topContainer">
+    <button id="btnHelp">?</button>
+    <div id="playerInfo"><div id="playerName">최고점수</div><div id="playerScore">0점</div></div>
+    <div id="characterArea"><img id="character" src="char_idle.png" alt="캐릭터"></div>
+    <div id="currentScore">현재 점수: 120</div>
+    <button id="btnColor">색상<br>보조</button>
+  </div>
+  <div id="bottomContainer"><div id="board"></div></div>
+  <div id="anotherContainer"><button id="btnBack">◀</button><button id="btnGallery">도감</button></div>
+
+</div>
+
+<div id="feedClearPopup" style="display: none;">
+  <div class="popupInnerClear">
+    <button id="btnReturn">재도전</button>
+    <button class="btnBackMenu">메뉴</button>
+    <button id="btnNext">다음</button>
+  </div>
+</div>
+
+
+<!--양떼를 지켜라!-도움말-->
+<div id="helpPopup">
+  <div class="popupBox">
+
+    <h2>양떼를 지켜라<em>!</em></h2>
+
+    <p class="lead">
+      야생동물이 대규모로 습격 중입니다.<br>
+      울타리에 접근하게 두지 마세요<em>!</em>
+    </p>
+
+    <p class="desc">
+      야생동물을 터치하면 목동이 돌팔매질을 해<br>
+      해당 야생동물떼를 쫒아냅니다.
+    </p>
+
+    <p class="desc">
+      <strong>주의<em>!</em></strong> 목동이 돌팔매질할 때마다 야생동물들이 틈을 타 전진합니다.
+      야생동물이 울타리에 도착하면 더 이상 양떼를 지킬 수 없습니다.
+    </p>
+
+    <button id="closeHelp">닫기</button>
+  </div>
+</div>
+<!--양떼를 지켜라!-도감-->
+<div id="galleryPopup">
+  <div class="galleryBox">
+
+  <div class="galleryTabs">
+    <button class="tab active" data-tab="char1">기본1</button>
+    <button class="tab" data-tab="char2">기본2</button>
+    <button class="tab" data-tab="char3">공격</button>
+
+    <button class="tab" data-tab="m1">늑대</button>
+    <button class="tab" data-tab="m2">재규어</button>
+    <button class="tab" data-tab="m3">곰</button>
+    <button class="tab" data-tab="m4">사자</button>
+
+    <button class="tab" data-tab="bg">배경</button>
+  </div>
+
+    <div id="galleryContent" class="galleryContent"></div>
+
+    <button id="closeGallery">닫기</button>
+
+  </div>
+
+</div>
+
+<script src="defense.js"></script>
+<script src="t.js"></script>
+<script src="feed.js"></script>
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js");
+}
+</script>
+
+</body>
+</html>
