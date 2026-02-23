@@ -23,7 +23,7 @@
   }
 
     /*도움말 팝업-오버레이*/
-    #helpPopup { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.125); display: none; justify-content: center; align-items: center; z-index: 999; }
+    #helpPopup, #helpPopup1 { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.125); display: none; justify-content: center; align-items: center; z-index: 999; }
     /*도움말 팝업-박스*/
     .popupBox { width: 80%; max-width: 350px; background: #e3effd; border-radius: 14px; border: #14ddb2 3px solid; padding: 25px; text-align: center; color: #222; line-height: 1.55; font-size: 15px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); }
     /*대주제*/.popupBox h2 { margin-top: 0; margin-bottom: 14px; font-size: 22px; font-weight: 700; }
@@ -76,8 +76,8 @@
   /*백버튼*/ #btnBack { width:4em; height:3em; border-radius:8px; border:none; background:#444; color:#fff; font-weight:bold; cursor:pointer; }
 
   /*도감 버튼*/
-  #btnGallery { width:4em; height:3em; border-radius:8px; border:none; background:#8b4513; color:white; font-weight:bold; cursor:pointer; }
-    /*도감 팝업-오버레이*/#galleryPopup { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.45); display: none; justify-content: center; align-items: center; z-index: 9998; }
+  #btnGallery, #btnGallery1 { width:4em; height:3em; border-radius:8px; border:none; background:#8b4513; color:white; font-weight:bold; cursor:pointer; }
+    /*도감 팝업-오버레이*/#galleryPopup, #galleryPopup1 { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.45); display: none; justify-content: center; align-items: center; z-index: 9998; }
     /*도감 팝업-박스*/.galleryBox { width: 90%; max-width: 380px; background: #fff; border-radius: 14px; padding: 15px; box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3); color: #222; text-align: center; }
       /*도감 내부탭*/
       .galleryTabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 12px; }
@@ -87,6 +87,5 @@
       .galleryContent { width: 100%; min-height: 160px; background: #fafafa; border-radius: 8px; padding: 12px; margin-bottom: 15px; box-sizing: border-box; }
       .previewImg { width: 120px; height: 120px; object-fit: contain; border-radius: 8px; margin-bottom: 12px; border: 1px solid #ccc; }
     /*아이콘 초기화*/
-    .resetBtn { margin-top: 12px; padding: 8px 16px; background: #c94a4a; border: 2px solid #a33737; border-radius: 8px; color: #fff; font-weight: bold; cursor: pointer; width: 100%; font-size: 14px; transition: 0.15s; }
-    .resetBtn:hover { background: #d85a5a; }
-    /*도감 닫기*/#closeGallery { width: 100%; padding: 10px; background: #444; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; }
+    .resetBtn { font-size: 12px; }
+    /*도감 닫기*/#closeGallery, #closeGallery1 { width: 100%; padding: 10px; background: #444; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; }

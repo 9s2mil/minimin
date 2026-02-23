@@ -22,19 +22,7 @@ document.getElementById("helpPopup").addEventListener("click", (e) => {
   }
 });
 
-btnGallery.onclick = () => {
-    galleryPopup.style.display = "flex";
-};
 
-closeGallery.onclick = () => {
-    galleryPopup.style.display = "none";
-};
-
-galleryPopup.onclick = (e) => {
-    if (e.target.id === "galleryPopup") {
-        galleryPopup.style.display = "none";
-    }
-};
 document.getElementById("btnBack").addEventListener("click", () => {
   miniMenu.style.display = "block";//여기블락
 });
@@ -563,6 +551,7 @@ document.getElementById("btnFeed").onclick = () => {
 // 디펜스(닫기) 버튼 → 미니메뉴 닫기
 document.getElementById("btnDefenseClose").onclick = () => {
   miniMenu.style.display = "none";
+  popupFeedGame.style.display = "none";
 };
 
 // 팝업 닫기 공통 (트레이닝 제거됨)

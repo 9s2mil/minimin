@@ -435,7 +435,7 @@ function openFeedGame(st) {
     if (isCleared(current, target)) {
       setTimeout(() => {
         document.getElementById("feedClearPopup").style.display = "flex";
-      }, 700);
+      }, 200);
     }
   };
 }
@@ -451,14 +451,20 @@ function renderTarget(arr) {
   arr.forEach(row => row.forEach(v => {
     const d = document.createElement("div");
     d.className = "feedCell";
-    if (v === 1) d.classList.add("grass");
-    else d.classList.add("water");
+
+    if (v === 1) {
+      d.classList.add("grass");
+      d.style.backgroundImage = `url(${skins2["G"]})`;
+    } else {
+      d.classList.add("water");
+      d.style.backgroundImage = `url(${skins2["W"]})`;
+    }
 
     targetBoard.appendChild(d);
   }));
+
   applyTargetScale(size, size);
 }
-
 /* ===============================
    📌 문제판 렌더링 (능력칸 클릭 가능)
 ================================ */
@@ -472,13 +478,33 @@ function renderCurrent(arr) {
       const d = document.createElement("div");
       d.className = "feedCell";
 
-      if (v === 0) d.classList.add("water");
-      else if (v === 1) d.classList.add("grass");
-      else if (v === 2) d.style.background = "rgba(0,0,0,0)"; // 빈칸
-      else if (v === 3) d.classList.add("w");
-      else if (v === 4) d.classList.add("w");
-      else if (v === 5) d.classList.add("g");
-      else if (v === 6) d.classList.add("g");
+      if (v === 0) {
+        d.classList.add("water");
+        d.style.backgroundImage = `url(${skins2["W"]})`;
+      }
+      else if (v === 1) {
+        d.classList.add("grass");
+        d.style.backgroundImage = `url(${skins2["G"]})`;
+      }
+      else if (v === 2) {
+        d.style.background = "rgba(0,0,0,0)"; // 빈칸
+      }
+      else if (v === 3) {
+        d.classList.add("w");
+        d.style.backgroundImage = `url(${skins2["D"]})`;
+      }
+      else if (v === 4) {
+        d.classList.add("w");
+        d.style.backgroundImage = `url(${skins2["D"]})`;
+      }
+      else if (v === 5) {
+        d.classList.add("g");
+        d.style.backgroundImage = `url(${skins2["P"]})`;
+      }
+      else if (v === 6) {
+        d.classList.add("g");
+        d.style.backgroundImage = `url(${skins2["P"]})`;
+      }
 
       d.dataset.r = r;
       d.dataset.c = c;
@@ -487,7 +513,6 @@ function renderCurrent(arr) {
     });
   });
 }
-
 /* ===============================
    📌 행 조작
 ================================ */
@@ -553,3 +578,215 @@ function applyTargetScale(cols, rows) {
   document.getElementById("feedTargetBoard").style.transform =
     `scale(${scale})`;
 }
+
+// 도움말
+document.querySelectorAll(".feedHelpBtn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.getElementById("helpPopup1").style.display = "flex";
+  });
+});
+
+document.getElementById("closeHelp1").addEventListener("click", () => {
+  document.getElementById("helpPopup1").style.display = "none";
+});
+
+document.getElementById("helpPopup1").addEventListener("click", (e) => {
+  if (e.target === e.currentTarget) {
+    document.getElementById("helpPopup1").style.display = "none";
+  }
+});
+
+/* =========================
+   🐄 목장 가꾸기 도감 시스템
+========================= */
+
+const ranchKeys = ["C4", "B2", "B3", "W", "G", "D", "P", "B1"];
+
+/* 기본 경로 */
+const ranchPath = "icons/";
+
+/* =========================
+   기본값 세팅
+========================= */
+const defaultSkin2 = {};
+ranchKeys.forEach(key => {
+  defaultSkin2[key] = ranchPath + key + ".png";
+});
+
+/* =========================
+   저장된 값 불러오기
+========================= */
+const skins2 = {};
+ranchKeys.forEach(key => {
+  skins2[key] =
+    localStorage.getItem("skin2_" + key) ||
+    defaultSkin2[key];
+});
+
+/* =========================
+   게임에 즉시 반영
+   👉 여기서 실제 사용하는 변수에 맞게 수정
+========================= */
+function applySkins2() {
+
+  // 🐄 캐릭터
+  const char = document.getElementById("feedCharacter");
+  if (char) {
+    char.style.backgroundImage = `url(${skins2["C4"]})`;
+  }
+
+  // 🎯 상황판 (정답 컨테이너)
+  const targetContainer = document.getElementById("feedTargetContainer");
+  if (targetContainer) {
+    targetContainer.style.backgroundImage = `url(${skins2["B2"]})`;
+  }
+
+  // 🧩 작업판
+  const board = document.getElementById("feedCurrentBoard");
+  if (board) {
+    board.style.backgroundImage = `url(${skins2["B3"]})`;
+  }
+
+  // 🌄 전체 배경
+  const wrap = document.getElementById("popupFeedGame");
+  if (wrap) {
+    wrap.style.backgroundImage = `url(${skins2["B1"]})`;
+  }
+
+  // 💧 물1
+  document.querySelectorAll(".feedCell.water").forEach(el => {
+    el.style.backgroundImage = `url(${skins2["W"]})`;
+  });
+
+  // 🌱 풀1
+  document.querySelectorAll(".feedCell.grass").forEach(el => {
+    el.style.backgroundImage = `url(${skins2["G"]})`;
+  });
+
+  // 🌱 풀2
+  document.querySelectorAll(".feedCell.g").forEach(el => {
+    el.style.backgroundImage = `url(${skins2["P"]})`;
+  });
+
+  // 💧 물2
+  document.querySelectorAll(".feedCell.w").forEach(el => {
+    el.style.backgroundImage = `url(${skins2["D"]})`;
+  });
+}
+/* =========================
+   팝업 열기
+========================= */
+document.querySelectorAll(".feedGalleryBtn").forEach(btn => {
+  btn.addEventListener("click", () => {
+
+    const popup = document.getElementById("galleryPopup1");
+    popup.style.display = "flex";
+
+    // 첫 탭(C4) 자동 클릭
+    const firstTab = popup.querySelector('[data-tab="C4"]');
+    if (firstTab) firstTab.click();
+
+  });
+});
+
+/* 닫기 */
+closeGallery1?.addEventListener("click", () => {
+  galleryPopup1.style.display = "none";
+});
+
+galleryPopup1?.addEventListener("click", (e) => {
+  if (e.target.id === "galleryPopup1") {
+    galleryPopup1.style.display = "none";
+  }
+});
+
+/* =========================
+   탭 클릭 처리
+========================= */
+document.querySelectorAll("#galleryPopup1 .tab").forEach(btn => {
+
+  btn.addEventListener("click", () => {
+
+    const active =
+      document.querySelector("#galleryPopup1 .tab.active");
+
+    if (active) active.classList.remove("active");
+
+    btn.classList.add("active");
+
+    loadGalleryContent1(btn.dataset.tab);
+  });
+
+});
+
+/* =========================
+   콘텐츠 로드
+========================= */
+function loadGalleryContent1(key) {
+
+  const box = document.getElementById("galleryContent1");
+  box.innerHTML = "";
+
+  const currentImg = skins2[key];
+
+  box.innerHTML = `
+    <img class="previewImg" id="previewSkin2" src="${currentImg}">
+    <input type="file" id="skinInput2" accept="image/*">
+    <p style="margin-top:10px;color:#555;">
+      이미지를 선택하면 즉시 반영됩니다.
+    </p>
+    <button class="resetBtn2" data-reset="${key}">
+      초기화
+    </button>
+  `;
+
+  document.getElementById("skinInput2")
+    .addEventListener("change", (ev) => {
+
+      const file = ev.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+
+      reader.onload = () => {
+
+        const newURL = reader.result;
+
+        skins2[key] = newURL;
+        localStorage.setItem("skin2_" + key, newURL);
+
+        document.getElementById("previewSkin2").src = newURL;
+
+        applySkins2();
+      };
+
+      reader.readAsDataURL(file);
+    });
+}
+
+/* =========================
+   초기화
+========================= */
+function resetSkin2(key) {
+
+  skins2[key] = defaultSkin2[key];
+  localStorage.setItem("skin2_" + key, defaultSkin2[key]);
+
+  applySkins2();
+}
+
+/* =========================
+   초기화 버튼
+========================= */
+document.addEventListener("click", (e) => {
+
+  if (!e.target.classList.contains("resetBtn2")) return;
+
+  const key = e.target.dataset.reset;
+
+  resetSkin2(key);
+  loadGalleryContent1(key);
+});
+
+/* 처음 로드시 적용 */
+applySkins2();

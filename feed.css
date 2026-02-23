@@ -110,19 +110,19 @@
 #feedClearPopup {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0);
+  background: rgba(171, 171, 171, 0.662);
   display: none;
   z-index: 9000;
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 30vh;
 }
 
 .popupInnerClear {
   background: rgba(255, 255, 255, 0.79);
   padding: 2em;
   border-radius: 12px;
+  margin-top: 30vh;
   width: 70%;
   display: flex;
   justify-content: space-between;
